@@ -1,0 +1,57 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.beans.Livre;
+import com.crea.dev1.jee.ecole.model.dao.ChambreDAO;
+import com.crea.dev1.jee.ecole.model.dao.LivreDAO;
+
+class LivreDAOTest {
+
+	@Test
+	void testGetLivreByCote() throws SQLException {
+		Livre e_ref = new Livre("ISBN10001","", "Seul au monde", null);
+		Livre e_res = new Livre();
+		e_res = LivreDAO.getLivreByCote("ISBN10001");
+		assertEquals(e_ref.getCote(),e_res.getCote());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+		assertEquals(e_ref.getTitre(),e_res.getTitre());
+		assertEquals(e_ref.getDatepret(),e_res.getDatepret());
+	}
+
+	@Test
+	void testGetLivreByTitre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteLivreByCote() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNumLivreByCote() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdDateLivreByTitre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddLivre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllLivre() {
+		fail("Not yet implemented");
+	}
+
+}

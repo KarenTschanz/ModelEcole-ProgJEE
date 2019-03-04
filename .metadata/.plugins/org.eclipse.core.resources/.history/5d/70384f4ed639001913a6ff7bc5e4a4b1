@@ -1,0 +1,71 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.dao.EleveDAO;
+
+class EleveDAOTest {
+
+	@Test
+	void testGetEleveByNum() {
+		Eleve e_ref = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		Eleve e_res = new Eleve();
+		e_res = EleveDAO.getEleveByNum("AGUE001");
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testGetEleveByNom() {
+		Eleve e_ref = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		Eleve e_res = new Eleve();
+		e_res = EleveDAO.getEleveByNom("AGUE MAX");
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testGetEleveByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdAdresseEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNoChambreEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddEleve() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetListEleveByDateN() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllEleve() {
+		ArrayList<Eleve> listEleve = 
+	}
+
+}

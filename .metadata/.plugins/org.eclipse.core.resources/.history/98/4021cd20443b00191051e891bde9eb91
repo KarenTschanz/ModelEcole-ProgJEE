@@ -1,0 +1,263 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.common.DBAction;
+
+
+public class ChambreDAO {
+
+	/**
+	* Liste les chambres par le numéro
+	* @param no
+	* @return : retourner l'objet chamTemp
+	* @throws SQLException
+	*/
+	
+	public static Chambre getChambreByNo(int no) throws SQLException
+	{
+		Chambre chambTemp = new Chambre();
+		String req = "SELECT * FROM chambre WHERE no = \'"+no+"\'";
+		// Retourner l'objet ElevTemp
+		DBAction.DBConnexion();
+		//Execution de la requete
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			chambTemp.afficheChambre();
+		}
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		//Retourner l'eleveTemp
+		return chambTemp;
+	}
+	
+	/**
+	* Selection des chambres par le numéro
+	* @param no
+	* @return : retourner l'objet chambTemp
+	* @throws SQLException
+	*/
+	
+	public static ArrayList<Chambre> getChambreByNoList(int no) throws SQLException 
+	{
+		//Cr�ation de ma liste d'�l�ve partageant la m�me chambre
+		ArrayList<Chambre> listChambreNo = new ArrayList<Chambre>();
+		// TO DO
+		String req = "SELECT * FROM chambre WHERE no = \'"+no+"\'";
+		
+		DBAction.DBConnexion();
+		
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			Chambre chambTemp = new Chambre();
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			
+			listChambreNo.add(chambTemp);
+		}
+		
+		for (int i = 0; i<listChambreNo.size(); i++) {
+			listChambreNo.get(i).afficheChambre();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		// Retourner l'objet ElevTemp
+		return listChambreNo;
+	}
+	
+	/**
+	 * Selection d'1 ou +sieurs Chambre par numéro identifiant de l'élève
+	 * @param num
+	 * @return :un objet chambre
+	 */
+	public static ArrayList<Chambre> getChambreByNum(String num) throws SQLException 
+	{ 
+		//Cr�ation de ma liste d'�l�ve partageant la m�me chambre
+		ArrayList<Chambre> listChambreNum = new ArrayList<Chambre>();
+		
+		String req = "SELECT * FROM chambre WHERE num = \'"+num+"\'";
+		
+		DBAction.DBConnexion();
+		
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			Chambre chambTemp = new Chambre();
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			
+			listChambreNum.add(chambTemp);
+		}
+		
+		for (int i = 0; i<listChambreNum.size(); i++) {
+			listChambreNum.get(i).afficheChambre();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		// Retourner l'objet ElevTemp
+		return listChambreNum;
+	}
+	
+	/**
+	 * Delete Chambre par un numéro
+	 * @param no
+	 * @return : 1 ou 0  (le nbr de chambres supprimées) sinon le (-) code d'erreur  
+	 */
+	public static int deleteChambreByNo(int no) {
+		int result = -1;
+		
+		DBAction.DBConnexion();
+		String req = "DELETE FROM chambre WHERE no = \'"+no+"\'";
+		try {
+			result = DBAction.getStm().executeUpdate(req);
+			System.out.println("Requête executee");
+		}catch (SQLException ex){
+			result = ex.getErrorCode();
+			System.out.println(ex.getMessage());
+		}
+		System.out.println("["+req+"] Suppression");
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		// TO DO
+
+		return result;
+	}
+	
+	/**
+	 * Mise à jour du numero étudiant par son numéro
+	 * @param no
+	 * @return : 1 ou 0  (le nbr de chambres mis à jour) sinon le (-) code d'erreur  
+	 */
+	public static int updNumChambreByNo(String num,int no) 
+	{
+		int result = -1;
+		DBAction.DBConnexion();
+		String req = "UPDATE chambre SET num = '"+num+"'  WHERE no = \'"+no+"\'";
+		
+		try {
+			result = DBAction.getStm().executeUpdate(req);
+			System.out.println("Requête executee");
+		}catch (SQLException ex){
+			result = ex.getErrorCode();
+			System.out.println(ex.getMessage());
+		}
+		System.out.println("["+req+"] Update");
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+
+		return result;
+	}
+	
+	/**
+	 * Met à jour(Attribuer un prix à une chambre) 
+	 * @param num
+	 * @return : 1 ou 0  (le no de la chambre mis à jour) sinon le (-) code d'erreur  
+	 */
+	public static int updPrixChambreByNo(int no,float prix) 
+	{
+		int result = -1;
+		DBAction.DBConnexion();
+		String req = "UPDATE chambre SET prix = '"+prix+"'  WHERE no = \'"+no+"\'";
+		
+		try {
+			result = DBAction.getStm().executeUpdate(req);
+			System.out.println("Requête executee");
+		}catch (SQLException ex){
+			result = ex.getErrorCode();
+			System.out.println(ex.getMessage());
+		}
+		System.out.println("["+req+"] Update");
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		return result;
+	}
+	
+	/**
+	 * Ajouter une chambre
+	 * @param int no, String num, float prix
+	 * @return : 1 ou 0  (le nbr des chambre) sinon le (-) code d'erreur   
+	 */
+	public static int addChambre(int no,String num, float prix) 
+	{
+		int result = -1;
+		DBAction.DBConnexion();
+		String req = "INSERT INTO chambre(no, num, prix)"+"VALUES ('"+no+"',NULL,'"+prix+"')";
+		try {
+			result = DBAction.getStm().executeUpdate(req);
+			System.out.println("Requête executee");
+		}catch (SQLException ex){
+			result = ex.getErrorCode();
+			System.out.println(ex.getMessage());
+		}
+		System.out.println("["+req+"] Update");
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		//TO DO		
+		return result;
+	}
+	
+	/**
+	 * @param aucun
+	 * @return : la liste de tous les �l�ves .
+	 */
+	public static ArrayList<Chambre> getAllChambre() throws SQLException 
+	{
+		
+		ArrayList<Chambre> listChambre = new ArrayList<Chambre>();
+		
+		String req = "SELECT * FROM chambre ";
+		
+		DBAction.DBConnexion();
+		
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			Chambre chambTemp = new Chambre();
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			
+			listChambre.add(chambTemp);
+		}
+		
+		for (int i = 0; i<listChambre.size(); i++) {
+			listChambre.get(i).afficheChambre();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		return listChambre;
+	}
+	
+}

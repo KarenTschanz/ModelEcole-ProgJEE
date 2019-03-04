@@ -1,0 +1,40 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+import java.sql.SQLException;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.common.DBAction;
+
+public class LivreDAO {
+	
+	/**
+	* Liste les livres par cote
+	* @param cote
+	* @return : retourner l'objet chamTemp
+	* @throws SQLException
+	*/
+	
+	public static Livre getLivreByCote(String cote) throws SQLException
+	{
+		Livre livreTemp = new Livre();
+		String req = "SELECT * FROM livre WHERE cote = \'"+cote+"\'";
+		// Retourner l'objet ElevTemp
+		DBAction.DBConnexion();
+		//Execution de la requete
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			
+			livreTemp.setCote(DBAction.getRes().getString(1));
+			livreTemp.setNum(DBAction.getRes().getString(2));
+			livreTemp.setTitre(DBAction.getRes().getString(3));
+			livreTemp.afficheLivre();
+		}
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		//Retourner l'eleveTemp
+		return livreTemp;
+	}
+
+}

@@ -1,0 +1,89 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.dao.EleveDAO;
+
+class EleveDAOTest {
+
+	@Test
+	void testGetEleveByNum() throws SQLException {
+		Eleve e_ref = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		Eleve e_res = new Eleve();
+		e_res = EleveDAO.getEleveByNum("AGUE001");
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testGetEleveByNom() {
+		Eleve e_ref1 = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		Eleve e_ref2 = new Eleve("AGUE004",0,"AGUE MAX", 42,"av de Verdin 13");
+		Eleve e_res = new Eleve();
+		e_res = EleveDAO.getEleveByNom("AGUE MAX");
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testGetEleveByNo() {
+		
+		Eleve e_ref1 = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		Eleve e_ref2 = new Eleve("AGUE004",0,"AGUE MAX", 42,"av de Verdin 13");
+		Eleve e_res = new Eleve();
+		e_res = EleveDAO.getEleveByNo(0);
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testDeleteEleveByNum() {
+		int delete =1;
+		assertEquals(delete, EleveDAO.deleteEleveByNum("AGUE001"));
+	}
+
+	@Test
+	void testUpdAdresseEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNoChambreEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddEleve() {
+		int insert =1;
+		assertEquals(insert, EleveDAO.addEleve("AGUE001","AGUE MAX", 40,"av de jjeune 13"));
+		assertEquals(insert, EleveDAO.addEleve("AGUE004","AGUE MAX", 42,"av de Verdin 13"));
+	}
+
+	@Test
+	void testGetListEleveByDateN() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllEleve() {
+		ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
+		Eleve e1 = new Eleve("AGUE001",0,"AGUE MAX", 40,"av de jjeune 13");
+		listEleve.add(e1);
+	}
+
+}

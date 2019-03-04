@@ -1,0 +1,9 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+import java.sql.SQLException;
+
+import com.crea.dev1.jee.ecole.model.common.DBAction;
+
+public class ChambreDAO {
+
+}

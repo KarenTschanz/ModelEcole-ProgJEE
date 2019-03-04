@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.time.LocalDate"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.beans.Eleve"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.dao.ChambreDAO"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.beans.Chambre"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.dao.EleveDAO"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.dao.LivreDAO"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.beans.Livre"/>
+<fullyQualifiedTypeName name="com.crea.dev1.jee.ecole.model.beans.UV"/>
+</qualifiedTypeNameHistroy>

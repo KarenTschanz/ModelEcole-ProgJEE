@@ -1,0 +1,5 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+public class InscritDAO {
+
+}

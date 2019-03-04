@@ -1,0 +1,49 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class ChambreDAOTest {
+
+	@Test
+	void testGetChambreByNoInt() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetChambreByNoString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNumChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdPrixChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddChambre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllChambre() {
+		fail("Not yet implemented");
+	}
+
+}

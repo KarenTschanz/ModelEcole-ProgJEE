@@ -1,0 +1,84 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.beans.UV;
+import com.crea.dev1.jee.ecole.model.common.DBAction;
+
+public class UVDAO {
+	
+	/**
+	 * Liste un code  en particulier d'après son identifiant passé en paramètre de la fonction.
+	 * @param code
+	 * @return : retourne l'objet ElevTemp 
+	 * @throws SQLException
+	 */
+	
+	public static UV getUvByCode(String code) throws SQLException 
+	{
+		UV uvTemp = new UV();
+		String req = "SELECT * FROM uv WHERE code = \'"+code+"\'";
+		// Retourner l'objet ElevTemp
+		DBAction.DBConnexion();
+		//Execution de la requete
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			uvTemp.setCode(DBAction.getRes().getString(1));
+			uvTemp.setNbh(DBAction.getRes().getInt(2));
+			uvTemp.setCoord(DBAction.getRes().getString(3));
+			uvTemp.affiche();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		//Retourner l'eleveTemp
+		return uvTemp;
+	}
+	
+	/**
+	 * Selection uv (s) par le coord
+	 * @param coord
+	 * @return :un liste uv  
+	 */
+	
+	public static ArrayList<UV> getEleveByNom(String nom) throws SQLException 
+	{
+		//Cr�ation de ma liste d'�l�ve partageant la m�me chambre
+		ArrayList<Eleve> listEleveNom = new ArrayList<Eleve>();
+		// TO DO
+		String req = "SELECT * FROM eleve WHERE nom = \'"+nom+"\'";
+		
+		DBAction.DBConnexion();
+		
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			Eleve elevTemp = new Eleve();
+			
+			elevTemp.setNum(DBAction.getRes().getString(1));
+			elevTemp.setNo(DBAction.getRes().getInt(2));
+			elevTemp.setNom(DBAction.getRes().getString(3));
+			elevTemp.setAge(DBAction.getRes().getInt(4));
+			elevTemp.setAdresse(DBAction.getRes().getString(5));
+			
+			listEleveNom.add(elevTemp);
+		}
+		
+		for (int i = 0; i<listEleveNom.size(); i++) {
+			listEleveNom.get(i).affiche();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		// Retourner l'objet ElevTemp
+		return listEleveNom;
+	}
+
+}

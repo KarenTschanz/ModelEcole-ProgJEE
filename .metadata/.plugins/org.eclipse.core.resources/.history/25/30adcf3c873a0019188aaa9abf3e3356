@@ -1,0 +1,85 @@
+package com.crea.dev1.jee.ecole.model.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.common.DBAction;
+
+
+public class ChambreDAO {
+
+	/**
+	* Liste les chambres par le numéro
+	* @param no
+	* @return : retourner l'objet chamTemp
+	* @throws SQLException
+	*/
+	
+	public static Chambre getChambreByNo(int no) throws SQLException
+	{
+		Chambre chambTemp = new Chambre();
+		String req = "SELECT * FROM chambre WHERE no = \'"+no+"\'";
+		// Retourner l'objet ElevTemp
+		DBAction.DBConnexion();
+		//Execution de la requete
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			chambTemp.afficheChambre();
+		}
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		//Retourner l'eleveTemp
+		return chambTemp;
+	}
+	
+	/**
+	* Selection des chambres par le numéro
+	* @param no
+	* @return : retourner l'objet chambTemp
+	* @throws SQLException
+	*/
+	
+	public static ArrayList<Chambre> getChambreByNo(String no) throws SQLException 
+	{
+		//Cr�ation de ma liste de chambre partageant la m�me chambre
+		ArrayList<Chambre> listChambreNo = new ArrayList<Chambre>();
+		// TO DO
+		String req = "SELECT * FROM chambre WHERE no = \'"+no+"\'";
+		
+		DBAction.DBConnexion();
+		
+		DBAction.setRes(DBAction.getStm().executeQuery(req));
+		
+		while( DBAction.getRes().next() )
+		{
+			//Creation de l'objet
+			Chambre chambTemp = new Chambre();
+			
+			chambTemp.setNo(DBAction.getRes().getInt(1));
+			chambTemp.setNum(DBAction.getRes().getString(2));
+			chambTemp.setPrix(DBAction.getRes().getFloat(3));
+			
+			listChambreNo.add(chambTemp);
+		}
+		
+		for (int i = 0; i<listChambreNo.size(); i++) {
+			listChambreNo.get(i).afficheChambre();
+		}
+		
+		//Fermeture de la connexion
+		DBAction.DBClose();
+		
+		// Retourner l'objet ElevTemp
+		return chambTemp;
+	}
+	
+	
+}

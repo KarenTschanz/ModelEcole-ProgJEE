@@ -1,0 +1,54 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class EleveDAOTest {
+
+	@Test
+	void testGetEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetEleveByNom() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetEleveByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdAdresseEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNoChambreEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddEleve() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetListEleveByDateN() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllEleve() {
+		fail("Not yet implemented");
+	}
+
+}

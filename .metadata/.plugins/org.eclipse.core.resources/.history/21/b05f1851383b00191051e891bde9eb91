@@ -1,0 +1,59 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.dao.EleveDAO;
+
+class ChambreDAOTest {
+
+	@Test
+	void testGetChambreByNoInt() {
+		Chambre e_ref = new Chambre(1,"", 350.25);
+		Chambre e_res = new Chambre();
+		e_res = EleveDAO.getEleveByNum("AGUE001");
+		assertEquals(e_ref.getAdresse(),e_res.getAdresse());
+		assertEquals(e_ref.getAge(),e_res.getAge());
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNom(),e_res.getNom());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+	}
+
+	@Test
+	void testGetChambreByNoString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdNumChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdPrixChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddChambre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetAllChambre() {
+		fail("Not yet implemented");
+	}
+
+}

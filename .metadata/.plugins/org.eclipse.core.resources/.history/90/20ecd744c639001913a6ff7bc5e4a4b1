@@ -1,0 +1,10 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+public class ChambreDAOTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

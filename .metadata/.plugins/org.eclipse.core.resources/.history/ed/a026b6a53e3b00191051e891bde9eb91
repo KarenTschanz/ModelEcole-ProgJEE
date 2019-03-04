@@ -1,0 +1,111 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.beans.Eleve;
+import com.crea.dev1.jee.ecole.model.dao.ChambreDAO;
+import com.crea.dev1.jee.ecole.model.dao.EleveDAO;
+
+class ChambreDAOTest {
+
+	@Test
+	void testGetChambreByNoInt() throws SQLException {
+		Chambre e_ref = new Chambre(1,"AGUE002", (float)350.25);
+		Chambre e_res = new Chambre();
+		e_res = ChambreDAO.getChambreByNo(1);
+		assertEquals(e_ref.getNo(),e_res.getNo());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+		assertEquals(e_ref.getPrix(),e_res.getPrix());
+	}
+
+	@Test
+	void testgetChambreByNoListString() {
+		ArrayList<Chambre> lstref = new ArrayList<Chambre> ();
+		ArrayList<Chambre> lstresult = new ArrayList<Chambre> ();
+		
+		Chambre e_ref1 = new Chambre(1,"AGUE002", (float)350.25);
+		Chambre e_ref2 = new Chambre(2,"KAMTO005",(float)400.55);
+
+		lstref.add(e_ref1);
+		lstref.add(e_ref2);
+		
+
+		try {
+			lstresult = ChambreDAO.getChambreByNoList(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i= 0;i<lstref.size();i++) {
+			assertEquals(lstref.get(i).getNo(),lstresult.get(i).getNo());
+			assertEquals(lstref.get(i).getNum(),lstresult.get(i).getNum());
+			assertEquals(lstref.get(i).getPrix(),lstresult.get(i).getPrix());
+			
+		}
+	}
+
+	@Test
+	void testGetEleveByNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteChambreByNo() {
+		int delete =1;
+		assertEquals(delete, ChambreDAO.deleteChambreByNo(9));
+	}
+
+	@Test
+	void testUpdNumChambreByNo() {
+		int update =1;
+		assertEquals(update, ChambreDAO.updNumChambreByNo( "POL003",3));
+	}
+
+	@Test
+	void testUpdPrixChambreByNo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddChambre() {
+		int insert =1;
+		assertEquals(insert, ChambreDAO.addChambre(9,"",(float)449.25));
+	}
+
+	@Test
+	void testGetAllChambre() throws SQLException {
+	 ArrayList<Chambre> listChambre = new ArrayList<Chambre>();
+			 
+			 Chambre c1 = new Chambre(1, "AGUE002", (float)350.25);//"AGUE001", 1, "AGUE MAX", 40, "18 Rue Labat 75018 Paris"
+			 Chambre c2 = new Chambre(2, "KAMTO005", (float)400.55);//"AGUE001", 1, "AGUE MAX", 40, "18 Rue Labat 75018 Paris"
+			 Chambre c3 = new Chambre(3, "", (float)350.25);
+			 Chambre c4 = new Chambre(4, "", (float)400.55);
+			 Chambre c5 = new Chambre(5, "", (float)250.45);
+			 Chambre c6 = new Chambre(6, "", (float)150.75);
+			 Chambre c7 = new Chambre(7, "", (float)200.25);
+		
+			 listChambre.add(c1);
+			 listChambre.add(c2);
+			 listChambre.add(c3);
+			 listChambre.add(c4);
+			 listChambre.add(c5);		
+			 listChambre.add(c6);	
+			 listChambre.add(c7);
+			 
+			 for( int i =0; i < listChambre.size(); i++ )
+			 {  
+				 assertEquals(listChambre.get(i).getNo(),ChambreDAO.getAllChambre().get(i).getNo());
+				 assertEquals(listChambre.get(i).getNum(),ChambreDAO.getAllChambre().get(i).getNum());
+				 assertEquals(listChambre.get(i).getPrix(),ChambreDAO.getAllChambre().get(i).getPrix());
+			 }
+			
+		}
+
+}

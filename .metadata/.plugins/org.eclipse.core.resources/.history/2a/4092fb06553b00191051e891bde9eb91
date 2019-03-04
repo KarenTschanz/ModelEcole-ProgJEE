@@ -1,0 +1,61 @@
+package com.crea.dev1.jee.ecole.model.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+
+import org.junit.jupiter.api.Test;
+
+import com.crea.dev1.jee.ecole.model.beans.Chambre;
+import com.crea.dev1.jee.ecole.model.beans.Livre;
+import com.crea.dev1.jee.ecole.model.dao.ChambreDAO;
+import com.crea.dev1.jee.ecole.model.dao.LivreDAO;
+
+class LivreDAOTest {
+
+	@Test
+	void testGetLivreByCote() throws SQLException {
+		Livre e_ref = new Livre("ISBN10001","", "Seul au monde", null);
+		Livre e_res = new Livre();
+		e_res = LivreDAO.getLivreByCote("ISBN10001");
+		assertEquals(e_ref.getCote(),e_res.getCote());
+		assertEquals(e_ref.getNum(),e_res.getNum());
+		assertEquals(e_ref.getTitre(),e_res.getTitre());
+		assertEquals(e_ref.getDatepret(),e_res.getDatepret());
+	}
+
+	@Test
+	void testGetLivreByTitre() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteLivreByCote() {
+		int delete =1;
+		assertEquals(delete, LivreDAO.deleteLivreByCote("ISBN10001"));
+	}
+
+	@Test
+	void testUpdNumLivreByCote() {
+		int update =1;
+		assertEquals(update, LivreDAO.updNumLivreByCote("POL003","ISBN10001"));
+	}
+
+	@Test
+	void testUpdDateLivreByTitre() {
+		int update =1;
+		assertEquals(update, LivreDAO.updDateLivreByTitre(null, "ISBN10001"));
+	}
+
+	@Test
+	void testAddLivre() {
+		int insert =1;
+		assertEquals(insert, LivreDAO.addLivre("ISBN10001","", "Seul au monde", null));
+	}
+
+	@Test
+	void testGetAllLivre() {
+		fail("Not yet implemented");
+	}
+
+}
